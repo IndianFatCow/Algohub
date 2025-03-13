@@ -11,6 +11,42 @@ import {
     Menu
 } from '@element-plus/icons-vue'
 import avatar from '@/assets/default.png'
+import {useAuthStore} from '@/stores/store.js'
+const authStore = useAuthStore();
+//初始化获取用户信息
+import {userInfoService} from '../api/user.js'
+import useUserInfoStore from '@/stores/userInfo.js'
+const userInfoStore = useUserInfoStore();
+const getUserInfo = async ()=>{
+    let result = await userInfoService();
+    // console.log("前台",result);
+    userInfoStore.setUserInfo(result);
+    // console.log(userInfoStore.userInfo.username);
+}
+getUserInfo();
+
+//头像条目点击后的处理
+import { useRouter } from 'vue-router'
+const router = useRouter();
+const handleCommand = (command) => {
+    switch (command) {
+        case 'info':
+            router.push('/admin/user/info');
+            break;
+        case 'avatar':
+            router.push('/admin/user/avatar');
+            break;
+        case 'repassword':
+            router.push('/admin/user/repassword');
+            break;
+        case 'logout':
+            //缺少确认框
+            authStore.clearCredentials();
+            userInfoStore.clearUserInfo();
+            router.push('/login');
+            break;
+    }
+}
 </script>
 
 <template>
@@ -45,13 +81,13 @@ import avatar from '@/assets/default.png'
                         </el-icon>
                         <span>个人中心</span>
                     </template>
-                    <el-menu-item index="/admin/user/avatar">
+                    <el-menu-item index="/admin/user/info">
                         <el-icon>
                             <User />
                         </el-icon>
                         <span>基本资料</span>
                     </el-menu-item>
-                    <el-menu-item index="/admin/user/info">
+                    <el-menu-item index="/admin/user/avatar">
                         <el-icon>
                             <Crop />
                         </el-icon>
@@ -70,19 +106,19 @@ import avatar from '@/assets/default.png'
         <el-container>
             <!-- 头部区域 -->
             <el-header>
-                <div><span class="el-header__title">Algohub：</span><strong>管理员</strong></div>
-                <el-dropdown placement="bottom-end">
+                <div><span class="el-header__title">Algohub：</span><strong>{{userInfoStore.userInfo.name}}</strong></div>
+                <el-dropdown placement="bottom-end" @command="handleCommand">
                     <span class="el-dropdown__box">
-                        <el-avatar :src="avatar" />
+                        <el-avatar :src="userInfoStore.userInfo.avatar?userInfoStore.userInfo.avatar:avatar" />
                         <el-icon>
                             <CaretBottom />
                         </el-icon>
                     </span>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item command="profile" :icon="User">基本资料</el-dropdown-item>
+                            <el-dropdown-item command="info" :icon="User">基本资料</el-dropdown-item>
                             <el-dropdown-item command="avatar" :icon="Crop">更换头像</el-dropdown-item>
-                            <el-dropdown-item command="password" :icon="EditPen">重置密码</el-dropdown-item>
+                            <el-dropdown-item command="repassword" :icon="EditPen">重置密码</el-dropdown-item>
                             <el-dropdown-item command="logout" :icon="SwitchButton">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>

@@ -74,7 +74,10 @@ const login = async () =>{
 
 
     //跳转到首页
-    router.push('/')
+    // if(result.status == 200){//管理员登录
+    //     router.push('/admin')
+    // }
+    router.push('/')//普通用户登录
 }
 //清空表单
 const clearForm = () => {

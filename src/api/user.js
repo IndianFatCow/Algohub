@@ -24,6 +24,9 @@ export const userLoginService = (loginData)=>{
 //获取用户详细信息
 export const userInfoService = ()=>{
     return request.get('/user/userInfo')
+    // const result = request.get('/user/userInfo')
+    // console.log("userjs",result)
+    // return result
 }
 
 //修改个人信息

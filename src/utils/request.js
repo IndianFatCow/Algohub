@@ -34,7 +34,11 @@ instance.interceptors.response.use(//返回数据后触发
             router.push('/login');
         }else if(err.response.status === 403){
             ElMessage.error('没有权限');
-        }else{
+        }else if(err.response.status === 301){
+            ElMessage.error('重定向');
+            router.push('/login');
+        }
+        else{
             ElMessage.error('请求失败');   
         }
         return Promise.reject(err);//异步的状态转化成失败的状态
@@ -51,7 +55,7 @@ instance.interceptors.request.use(//请求前触发
             config.headers.Authorization = authHeader; // 设置请求头
         }
         //  输出日志，检查 Authorization 是否正确**
-        console.log('请求头:', config.headers);
+        // console.log('请求头:', config.headers);
         return config;
     },
     err=>{

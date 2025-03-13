@@ -4,33 +4,33 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginVue from '@/views/Login.vue'
 import admin from '@/views/adminpage.vue'
 
-import Articlecategoryvue from '@/views/admin/article/questionManage.vue'
+import Articlecategoryvue from '@/views/admin/contentAdmin/questionManage.vue'
 // import ArticleManagevue from '@/views/admin/article/ArticleManage.vue'
 
 // import userAvatarvue from '@/views/admin/UserAvatar.vue'
 // import userInfovue from '@/views/admin/UserInfo.vue'
 // import userResetpasswordvue from '@/views/admin/UserResetPassword.vue'
 //admin页面的子页面
-// import Articlecategoryvue from '@/views/admin/article/show.vue'//题目管理
-import ArticleManagevue from '@/views/admin/article/show.vue'//文章管理
-import userManage from '@/views/admin/article/show.vue'//用户管理
+// import Articlecategoryvue from '@/views/admin/contentAdmin/show.vue'//题目管理
+import ArticleManagevue from '@/views/admin/contentAdmin/show.vue'//文章管理
+import userManage from '@/views/admin/contentAdmin/show.vue'//用户管理
 
-import userAvatarvue from '@/views/admin/article/show.vue'
-import userInfovue from '@/views/admin/article/show.vue'
-import userResetpasswordvue from '@/views/admin/article/show.vue'
+import userAvatarvue from '@/views/admin/contentAdmin/show.vue'
+import userInfovue from '@/views/admin/UserInfo.vue'
+import userResetpasswordvue from '@/views/admin/contentAdmin/show.vue'
 //uesr页面和子页面
 import userpage from '@/views/userpage.vue'
-import homepage from '@/views/admin/article/show.vue'
-import questionBank from '@/views/admin/article/show.vue'
-import profile from '@/views/admin/article/show.vue'
-import qa from '@/views/admin/article/show.vue'
-import visualAlgo from '@/views/admin/article/show.vue'
+import homepage from '@/views/admin/contentAdmin/show.vue'
+import questionBank from '@/views/admin/contentAdmin/show.vue'
+import profile from '@/views/admin/contentAdmin/show.vue'
+import qa from '@/views/admin/contentAdmin/show.vue'
+import visualAlgo from '@/views/admin/contentAdmin/show.vue'
 
 //定义路由关系
 const routes = [
     { path: '/login', component: LoginVue },    
     { path: '/admin', component: admin,
-        redirect:'/admin/question/category',//重定向
+        redirect:'/admin/user/info',//重定向
         children://配置子路由
         [   { path: '/admin/question/category', component: Articlecategoryvue },
             { path: '/admin/article/manage', component: ArticleManagevue },

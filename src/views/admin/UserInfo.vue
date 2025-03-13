@@ -3,9 +3,9 @@ import { ref } from 'vue'
 import useUserInfoStore from '@/stores/userInfo.js'
 const userInfoStore = useUserInfoStore();
 
-const userInfo = ref({...userInfoStore.info})
+const userInfo = ref({...userInfoStore.userInfo})
 const rules = {
-    nickname: [
+    username: [
         { required: true, message: '请输入用户昵称', trigger: 'blur' },
         {
             pattern: /^\S{2,10}$/,
@@ -44,8 +44,8 @@ const updateUserInfo = async ()=>{
                     <el-form-item label="登录名称">
                         <el-input v-model="userInfo.username" disabled></el-input>
                     </el-form-item>
-                    <el-form-item label="用户昵称" prop="nickname">
-                        <el-input v-model="userInfo.nickname"></el-input>
+                    <el-form-item label="用户昵称" prop="username">
+                        <el-input v-model="userInfo.username"></el-input>
                     </el-form-item>
                     <el-form-item label="用户邮箱" prop="email">
                         <el-input v-model="userInfo.email"></el-input>

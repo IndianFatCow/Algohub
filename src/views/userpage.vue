@@ -15,27 +15,32 @@ import { ElButton, ElInput, ElAvatar, ElDropdown, ElDropdownItem, ElDropdownMenu
           <el-menu-item index="/question-bank">题库</el-menu-item>
           <el-menu-item index="/profile">个人主页</el-menu-item>
           <el-menu-item index="/qa">问答</el-menu-item>
-          <el-menu-item index="/visual-algo">Visual-algo</el-menu-item>
+          <!-- <el-menu-item index="/visual-algo">Visual-algo</el-menu-item> -->
         </el-menu>
       </div>
-      <div class="nav-right">
+      <div class="nav-center">
         <el-input placeholder="查找题目文章动态" class="search-bar">
           <template #append>
             <el-button>搜索</el-button>
           </template>
         </el-input>
         <span class="points">积分: {{ points }}</span>
-        <el-avatar src="../assets/images/sunrise.jpg" @click="toggleDropdown" />
-        <el-dropdown v-if="showDropdown">
+        <el-dropdown placement="bottom-end">
+          <span class="el-dropdown__box">
+              <el-avatar :src="avatar" />
+              <el-icon>
+                  <CaretBottom />
+              </el-icon>
+          </span>
           <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item>个人资料</el-dropdown-item>
-              <el-dropdown-item>我的收藏</el-dropdown-item>
-              <el-dropdown-item>设置</el-dropdown-item>
-              <el-dropdown-item>退出登录</el-dropdown-item>
-            </el-dropdown-menu>
+              <el-dropdown-menu>
+                  <el-dropdown-item command="profile" :icon="User">基本资料</el-dropdown-item>
+                  <el-dropdown-item command="avatar" :icon="Crop">更换头像</el-dropdown-item>
+                  <el-dropdown-item command="password" :icon="EditPen">重置密码</el-dropdown-item>
+                  <el-dropdown-item command="logout" :icon="SwitchButton">退出登录</el-dropdown-item>
+              </el-dropdown-menu>
           </template>
-        </el-dropdown>
+      </el-dropdown>
       </div>
     </el-header>
     
@@ -60,7 +65,7 @@ import { ElButton, ElInput, ElAvatar, ElDropdown, ElDropdownItem, ElDropdownMenu
   align-items: center;
 }
 
-.nav-right {
+.nav-center {
   display: flex;
   align-items: center;
   gap: 15px;
