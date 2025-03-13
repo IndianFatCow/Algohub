@@ -11,7 +11,7 @@ import { ElButton, ElInput, ElAvatar, ElDropdown, ElDropdownItem, ElDropdownMenu
       <div class="nav-left">
         <el-menu mode="horizontal" router>
           <el-menu-item index="/">Algohub</el-menu-item>
-          <el-menu-item index="/home">首页</el-menu-item>
+          <el-menu-item index="/home">首页1</el-menu-item>
           <el-menu-item index="/question-bank">题库</el-menu-item>
           <el-menu-item index="/profile">个人主页</el-menu-item>
           <el-menu-item index="/qa">问答</el-menu-item>
